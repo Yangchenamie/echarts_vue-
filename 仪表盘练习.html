@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/lib/echarts.min.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height:400px"></div>
+
+    <script>
+
+        var myEcharts = echarts.init(document.querySelector('div'))
+
+        var option = {
+            series:[
+                {
+                    type:'gauge',
+                    data:[
+                            {
+                                //多个指针: 增加data中数组的元素
+                                value:97,
+
+                                //多个指针颜色的差异: itemStyle
+                                itemStyle:{
+                                    color:'pink'
+                                }
+                            },
+                            {
+                                //多个指针: 增加data中数组的元素
+                                value:85,
+
+                                //多个指针颜色的差异: itemStyle
+                                itemStyle:{
+                                    color:'green'
+                                }
+                            }
+                     ]
+                }
+            ]
+        }
+
+        myEcharts.setOption(option)
+    </script>
+</body>
+</html>

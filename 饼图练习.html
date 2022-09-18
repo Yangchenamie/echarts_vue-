@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height:400px"></div>
+
+    <script>
+        var myEcharts = echarts.init(document.querySelector('div'))
+
+        var pieData = [ { value: 11231, name: "淘宝", },{ value: 22673, name: "京东" },{ value: 6123, name: "唯品会" },{ value: 8989, name: "1号店" },{ value: 6700, name: "聚美优品" } ]
+
+        var option = {
+            //饼图无须配置 xAxis 和 yAxis
+            series:[
+                {
+                    type:'pie', //饼图
+                    data:pieData,
+                    label:{
+                        show:true,
+                        formatter:function(arg){
+                            return arg.data.name + '平台' + arg.data.value + '元\n' + arg.percent +'%'
+                        }
+                    },
+
+                    //南丁格尔图 指的是每一个扇形的半径随着数据的大小而不同, 数值占比越大, 扇形的半径也就越大
+                    //roseType:'radius',
+
+                    //选中效果
+                    selectedMode: 'multiple',
+                    selectedOffset: 30,
+
+                    //number ：直接指定外半径值。 string ：例如， '20%' ，表示外半径为可视区尺寸（容器高宽中较小一项）的 20% 长度。 Array. ：数组的第一项是内半径，第二项是外半径, 通过 Array , 可以将饼图设置为圆环图
+                    radius:150,
+                    //radius: ['50%', '70%']
+                }
+            ]
+        }
+
+        myEcharts.setOption(option)
+    </script>
+</body>
+</html>

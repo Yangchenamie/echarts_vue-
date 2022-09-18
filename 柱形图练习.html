@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px; height:400px"></div>
+    <script>
+        var myEcharts = echarts.init(document.getElementById('main'))
+
+        var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+
+        var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+        var option = {
+            title:{
+                show:true,
+                text:'语文成绩', // 标题文字
+                link:'http://www.itcast.cn',
+                textStyle:{
+                    color:'red'
+                },
+                borderWidth: 5, // 标题边框 
+                borderColor: 'green', // 标题边框颜色 
+                borderRadius: 5, // 标题边框圆角 
+                left: 20, // 标题的位置 
+                top: 20 // 标题的位置
+            },
+
+            //配置1: 网格 grid
+            grid:{
+                show:true, // 显示grid
+                //borderWidth:10,  // grid的边框宽度
+                borderColor:'red', // grid的边框颜色
+                //left:0, // grid的位置
+                //top:100,
+                //width:600, // grid的大小
+                //heigth:400
+            },
+
+
+
+
+
+            //图例: legend legend 是图例,用于筛选类别,需要和 series 配合使用legend 中的 data 是一个数组      legend 中的 data 的值需要和 series 数组中某组数据的 name 值一致
+            legend:{
+                data:['语文','数学']
+            },
+
+            xAxis:{
+                //横向柱状图  只需要让x轴的角色和y轴的角色互换一下即可. 既 xAxis 的 type 设置为value , yAxis 的 type 设置为 category , 并且设置 data 即可
+
+                // type:'value'
+            
+                type:'category',
+                data:xDataArr
+            },
+            yAxis:{
+                //横向柱状图
+                // type:'category',
+                // data:xDataArr
+
+                type:'value',
+            },
+            series:[
+                {
+                    name:'语文',
+                    type:'bar',
+                    data:yDataArr,
+                    markPoint:{
+                        data:[
+                            {
+                                type:'min',name:'最小值',//最小值显示
+                            },
+                            {
+                                type:'max',name:'最大值'//最大值显示
+                            },
+                        ]
+                    },
+                    markLine:{
+                        data:[
+                            {
+                                type:'average',name:'平均值'
+                            }
+                        ]
+                    },
+                    label:{
+                        show:true,  //显示数值
+                        rotate:30   //旋转角度
+                    },
+                    //barWidth:'50%' //柱的宽度
+                },
+                {
+                    name: '数学', type: 'bar', data: [93, 60, 61, 82, 95, 70, 71, 86]
+                }
+            ],
+
+            //提示框: tooltip tooltip 指的是当鼠标移入到图表或者点击图表时, 展示出的提示框
+            tooltip:{
+            //触发类型: trigger  可选值有item\axis
+                // trigger:'item'
+                trigger:'item',
+            //触发时机: triggerOn 可选值有 mouseOver\click
+                // triggerOn:'mouseOver',
+                triggerOn:'click',
+                formatter:function(arg){
+                    console.log(arg);
+                    return arg.name+'的语文成绩是'+arg.data
+                }
+
+
+            },
+
+            //工具按钮: toolbox toolbox 是 ECharts 提供的工具栏, 内置有 导出图片，数据视图, 重置, 数据区域缩放, 动态类型切换五个工具
+            toolbox:{
+                feature:{
+                    saveAsImage:{}, //将图表保存为图片
+                    dataView:{}, //是否显示出原始数据
+                    restore:{},// 还原图表
+                    dataZoom:{},// 数据缩放
+                    magicType:{
+                        type:['bar','line'] // 将图表在不同类型之间切换,图表的转换需要数据的支持
+                    }
+                }
+            },
+            dataZoom:[
+                {
+                    type:'slider',// slider : 滑块
+                    //type:'inside', //inside : 内置, 依靠鼠标滚轮或者双指缩放
+                    xAxisIndex:0 //xAxisIndex :设置缩放组件控制的是哪个 x 轴, 一般写0即可
+                },
+                {
+                    type:'slider',
+                    yAxisIndex:0, //yAxisIndex :设置缩放组件控制的是哪个 y 轴, 一般写0即可
+                    
+                    //指明初始状态的缩放情况
+                    start: 0,  //start : 数据窗口范围的起始百分比
+                    end: 80 //end : 数据窗口范围的结束百分比
+                }
+            ]
+        }
+
+        myEcharts.setOption(option)
+    </script>
+</body>
+</html>

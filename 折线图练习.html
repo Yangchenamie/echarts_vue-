@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+
+    <!-- <script>
+        var myEcharts = echarts.init(document.querySelector("div"))
+
+        var xDataArr = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+        // var yDataArr = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+        var yDataArr = [3005, 3003, 3001, 3002, 3009, 3007, 3003, 3001, 3005, 3004, 3001, 3009] // 此时y轴的数据都在3000附近, 每个数之间相差不多
+
+        var option = {
+            xAxis:{
+                type:'category',
+                data:xDataArr,
+                //紧挨边缘 boundaryGap   boundaryGap 是设置给 x 轴的, 让起点从 x 轴的0坐标开始
+                boundaryGap:false
+            },
+            yAxis:{
+                type:'value',
+                //scale 配置 scale 应该配置给 y 轴
+                scale:true
+            },
+            series:[
+                {
+                    type:'line',
+                    data:yDataArr,
+                    markPoint:{
+                        data:[
+                            {
+                                type:'min',name:'最小值'
+                            },
+                            {
+                                type:'max',name:'最大值'
+                            }
+                        ]
+                    },
+                    markLine:{
+                        data:[
+                            {
+                                type:'average',
+                                name:'平均值'
+                            }
+                        ]
+                    },
+                    //标注区间 markArea
+                    markArea:{
+                        data:[
+                            [
+                                {
+                                    xAxis:'1月'
+                                },
+                                {
+                                    xAxis:'2月'
+                                }
+                            ],
+                            [
+                                {
+                                    xAxis:'7月'
+                                },
+                                {
+                                    xAxis:'8月'
+                                }
+                            ],
+                        ]
+                    },
+                    smooth:true, //平滑线条 smooth
+
+                    //线条样式 lineStyle
+                    lineStyle:{
+                        color:'pink',
+                        type:'dashed' // 可选值还有 dotted solid
+                    },
+
+                    //填充风格 areaStyle
+                    areaStyle:{
+                        color:'skyblue'
+                    }
+                }
+            ]
+        }
+
+        myEcharts.setOption(option)
+    </script> -->
+    <script>
+        var mCharts = echarts.init(document.querySelector("div")) 
+        var xDataArr = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] 
+        var yDataArr1 = [120, 132, 101, 134, 90, 230, 210] 
+        var yDataArr2 = [20, 82, 191, 94, 290, 330, 310] 
+        var option = { 
+            xAxis:
+                {
+                    type: 'category', 
+                    data: xDataArr,
+                    
+                },
+            yAxis:
+                { 
+                    type: 'value', 
+                    scale: true,
+                    
+                },
+            series: [ 
+                { 
+                    type: 'line', 
+                    data: yDataArr1,
+                    stack: 'all' // series中的每一个对象配置相同的stack值, 这个all可以任 意写
+                },
+                { 
+                    type: 'line',
+                    data: yDataArr2,
+                    stack: 'all' // series中的每一个对象配置相同的stack值, 这个all可以任意 写 
+                } 
+            ] 
+        }
+        mCharts.setOption(option)
+    </script>
+</body>
+</html>

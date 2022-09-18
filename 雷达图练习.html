@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/lib/echarts.min.js"></script>
+</head>
+<body>
+    <div style="width: 600px;height:400px"></div>
+
+    <script>
+        var myEcharts = echarts.init(document.querySelector('div')) 
+
+        var dataMax = [ { name: '易用性', max: 100 },{ name: '功能', max: 100 },{ name: '拍照', max: 100 },{ name: '跑分', max: 100 },{ name: '续航', max: 100 } ]
+
+        var hwScore = [80, 90, 80, 82, 90] 
+        var zxScore = [70, 82, 75, 70, 78]
+          
+        var option = {
+            radar:{
+                indicator:dataMax,
+                //shape:'circle' // 'polygon' 多边形 和 'circle' 圆形
+            },
+            series:[
+                {
+                    type:'radar',
+                    data:[
+                        {
+                            name:'华为手机',
+                            value:hwScore
+                        },
+                        {
+                            name:'中兴手机',
+                            value:zxScore
+                        }
+                    ],
+                    label:{
+                        show:true
+                    },
+                    areaStyle:{}, //区域面积 areaStyle
+                }
+            ]
+        }
+
+        myEcharts.setOption(option)
+    </script>
+</body>
+</html>
